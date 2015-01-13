@@ -1,6 +1,9 @@
 require 'spec_helper'
+require_relative 'helpers/add_contact.rb'
 
-feature 'Each single contact' do
+include AddContact;
+
+feature 'A contact' do
 
   scenario 'can be searched', js: true do
     visit '/'
@@ -9,6 +12,12 @@ feature 'Each single contact' do
     click_on 'Search'
     expect(page).to have_content 'Ginola David'
     expect(page).not_to have_content 'Bannon Barry'
+  end
+
+  scenario 'can be added', js: true do
+    visit '/'
+    add_contact
+    expect(page).to have_content 'Elena Garrone'
   end
 
 end

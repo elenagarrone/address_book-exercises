@@ -14,8 +14,15 @@ $(document).ready(function(){
       return $( a ).text() > $( b ).text();
     }).appendTo('ul')
 
+    $("<a class='all' href='#'>Show all</a>").insertAfter('form')
+    $('.all').hide()
+
     $('#search_button').on('click', function(){
       var search_name = capitalizeFirstLetter($('#search').val())
+
+      $(".all").on('click', function(){
+        $('li').show()
+      })
 
       $(".contacts li").each(function(){
         var text = $(this).text()
@@ -24,12 +31,8 @@ $(document).ready(function(){
           $(this).hide();
         } else {
           $(this).show();
+          $('.all').show()
         }
-      })
-
-      $("<a class='all' href='#'>Show all</a>").insertAfter('form')
-      $(".all").on('click', function(){
-        $('li').show()
       })
 
     })

@@ -16,23 +16,17 @@ $(document).ready(function(){
 
     $('#search_button').on('click', function(){
       var search_name = capitalizeFirstLetter($('#search').val())
-      console.log(search_name)
 
       $(".contacts li").each(function(){
         var text = $(this).text()
 
-        // If the list item does not contain the text phrase fade it out
-        if (text.indexOf(search_name) === -1) { // use the variable here
+        if (text.indexOf(search_name) === -1) {
           $(this).hide();
-
-          // Show the list item if the phrase matches and increase the count by 1
         } else {
           $(this).show();
-          // count++;
         }
-        console.log('hi')
 
-      });
+      })
     })
 
   })

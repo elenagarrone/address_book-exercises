@@ -1,3 +1,7 @@
+function eachWord(str){
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 $(document).ready(function(){
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
@@ -9,6 +13,11 @@ $(document).ready(function(){
     $('li').sort(function(a,b){
       return $( a ).text() > $( b ).text();
     }).appendTo('ul')
+
+    $('#search_button').on('click', function(){
+      var search_name = $('#search').val()
+      alert(eachWord(search_name))
+    })
 
   })
 })

@@ -25,8 +25,13 @@ $(document).ready(function(){
         } else {
           $(this).show();
         }
-
       })
+
+      $("<a class='all' href='#'>Show all</a>").insertAfter('form')
+      $(".all").on('click', function(){
+        $('li').show()
+      })
+
     })
 
   })

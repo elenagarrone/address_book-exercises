@@ -3,5 +3,8 @@ $(document).ready(function(){
     $.each(data, function(i){
       $('.contacts').append("<li class='contact'>" + data[i].surname + " " + data[i].first_name + "</li>")
     })
+    $('li').sort(function(a,b){
+      return $( a ).text() > $( b ).text();
+    }).appendTo('ul')
   })
 })

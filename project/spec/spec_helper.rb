@@ -1,6 +1,5 @@
 require './server.rb'
 require 'capybara/rspec'
-require 'capybara/poltergeist'
 
 Capybara.app = Sinatra::Application.new
 

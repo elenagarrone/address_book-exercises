@@ -9,7 +9,7 @@ feature 'The list of all the contacts' do
 
   scenario 'in alphabetical order', js: true do
     visit '/'
-    sleep(1)
+    sleep(2)
     expect(first('li')).to have_content('Bannon')
   end
 
@@ -22,6 +22,7 @@ feature 'The list of all the contacts' do
 
   scenario 'after the serach, you can see all the contacts by pressing a button', js: true do
     visit '/'
+    sleep(2)
     fill_in :search, with: 'ginola'
     click_on 'Search'
     click_on 'Show all'

@@ -4,7 +4,6 @@
     <title>Address book</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type='text/javascript' src="/contacts.js"></script>
-    <script type='text/javascript' src="/add_contact.js"></script>
   </head>
 
   <body>
@@ -12,10 +11,12 @@
       <h1>Address book</h1>
     </header>
     <main>
-      <form>
+      <form class='search_form'>
         <input id='search' type='text' placeholder='Search name'>
         <a id='search_button' href='#'>Search</a>
       </form>
+      <a class='add_contact' href='#'>Add contact</a>
+      <form class='add_contact_form'></form>
 
       <ul class='contacts'></ul>
     </main>

@@ -7,7 +7,7 @@ feature 'A contact' do
 
   scenario 'can be searched', js: true do
     visit '/'
-    sleep(1)
+    sleep(2)
     fill_in :search, with: 'ginola'
     click_on 'Search'
     expect(page).to have_content 'Ginola David'
@@ -16,8 +16,9 @@ feature 'A contact' do
 
   scenario 'can be added', js: true do
     visit '/'
+    sleep(2)
     add_contact
-    expect(page).to have_content 'Elena Garrone'
+    expect(page).to have_content 'TestE'
   end
 
 end

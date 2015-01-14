@@ -3,6 +3,7 @@ function capitalizeFirstLetter(str){
 }
 
 $(document).ready(function(){
+
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
     $.each(data, function(i){
@@ -14,7 +15,7 @@ $(document).ready(function(){
       return $( a ).text() > $( b ).text();
     }).appendTo('ul')
 
-    $("<a class='all' href='#'>Show all</a>").insertAfter('form')
+    $("<a class='all' href='#'>Show all</a>").insertAfter('.search_form')
     $('.all').hide()
 
     $('#search_button').on('click', function(){
@@ -37,5 +38,19 @@ $(document).ready(function(){
 
     })
 
+    $('.add_contact').on('click', function(){
+      $('.add_contact_form').append("<input class='add_name' type='text' name='name' placeholder='Name'>" )
+      $('.add_contact_form').append("<input class='add_surname' type='text' name='surname' placeholder='Surname'>" )
+      $('.add_contact_form').append("<input class='add_email' type='email' name='email' placeholder='Email'>" )
+      $('.add_contact_form').append("<input class='add_phone' type='text' name='phone_number' placeholder='Phone number'>" )
+    })
+
   })
+
+  // $.post('http://fast-gorge.herokuapp.com/contacts', function(data){
+  //
+  //
+  //
+  // })
+
 })

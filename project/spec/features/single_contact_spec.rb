@@ -18,6 +18,7 @@ feature 'A contact' do
     visit '/'
     sleep(2)
     add_contact
+    sleep(1)
     expect(page).to have_content 'TestE'
   end
 

@@ -22,4 +22,8 @@ feature 'A contact' do
     expect(page).to have_content 'TestE'
   end
 
+  # scenario 'can be remote', js: true do
+  #   visit '/'
+  # end
+
 end

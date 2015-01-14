@@ -34,7 +34,8 @@ feature 'A contact' do
   scenario 'can be removed', js: true do
     visit '/'
     sleep(1)
-    click_on 'Remove'
+    click_on 'Remove Bannon'
+    expect(page).not_to have_content('Bannon Barry')
   end
 
 end

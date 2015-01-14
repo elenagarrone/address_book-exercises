@@ -10,7 +10,7 @@ feature 'The list of all the contacts' do
   scenario 'in alphabetical order', js: true do
     visit '/'
     sleep(1)
-    expect(first('.contact')).to have_content('Bannon')
+    expect(first('li')).to have_content('Bannon')
   end
 
   scenario 'with the informations', js: true do

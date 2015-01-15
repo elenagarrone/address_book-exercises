@@ -86,6 +86,12 @@ $(document).ready(function(){
       '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
       + "</li>")
 
+      $('input[name=name]').val('')
+      $('input[name=surname]').val('')
+      $('input[name=address]').val('')
+      $('input[name=email]').val('')
+      $('input[name=phone_number]').val('')
+
       $('.add_contact_form').hide()
 
       var mylist = $('ul');
@@ -115,7 +121,7 @@ $(document).ready(function(){
     var phone_number = $('input[name=phone_number]').val()
     var contact_id = $(this).data('id')
     $.ajax({
-      url: "http://fast-gorge.herokuapp.com/contacts/" ,
+      url: "http://fast-gorge.herokuapp.com/contacts/",
       data: { id: contact_id, first_name: name, surname: surname, address: address, email: email, phone_number: phone_number },
       type: "PUT",
       success: function(data){

@@ -2,16 +2,6 @@ function capitalizeFirstLetter(str){
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-function interface(){}
-
-interface.prototype.alphabetical_order = function(){
-  $('li').sort(function(a,b){
-    return $( a ).text() > $( b ).text();
-  }).appendTo('ul')
-}
-
-var interface = new interface();
-
 $(document).ready(function(){
   $('.add_contact_form').hide()
   $('.all').hide()
@@ -19,11 +9,13 @@ $(document).ready(function(){
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
     $.each(data, function(i, data){
-      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " - " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
       '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove</button>' + "</li>")
     })
 
-    interface.alphabetical_order()
+    $('li').sort(function(a,b){
+      return $( a ).text() > $( b ).text();
+    }).appendTo('ul')
 
   })
 
@@ -80,10 +72,12 @@ $(document).ready(function(){
       "phone_number": phone_number,
       "email": email
     }, function(data){
-      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " - " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
       '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove</button>' + "</li>")
 
-      interface.alphabetical_order()
+      $('li').sort(function(a,b){
+        return $( a ).text() > $( b ).text();
+      }).appendTo('ul')
     })
   })
 

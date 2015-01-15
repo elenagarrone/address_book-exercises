@@ -37,6 +37,7 @@ $(document).ready(function(){
       type: "DELETE",
       success: function(data){
         $('li[data-id="'+ data.id +'"]').remove()
+        alert('The contact has been deleted successfully')
       }
     });
   })
@@ -103,7 +104,16 @@ $(document).ready(function(){
 
     })
     .fail(function() {
-      alert("Name and Surname are required")
+      name_validation = $('input[name=name]').val()
+      surname_validation = $('input[name=surname]').val()
+      if (name_validation === "") {
+        $('input[name=name]').css('border-color', 'red')
+        alert("A name is required")
+      } else {
+        $('input[name=surname]').css('border-color', 'red')
+        alert("A surname is required")
+      }
+
     })
     .done(function() {
       alert("The contact has been added successfully")
@@ -152,6 +162,8 @@ $(document).ready(function(){
         '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
         '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
         + "</li>")
+
+        alert('The contact has been edited successfully')
 
         $('.edit_contact_form input').val('')
 

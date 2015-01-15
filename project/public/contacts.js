@@ -86,11 +86,7 @@ $(document).ready(function(){
       '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
       + "</li>")
 
-      $('input[name=name]').val('')
-      $('input[name=surname]').val('')
-      $('input[name=address]').val('')
-      $('input[name=email]').val('')
-      $('input[name=phone_number]').val('')
+      $('.add_contact_form input').val('')
 
       $('.add_contact_form').hide()
 
@@ -134,11 +130,7 @@ $(document).ready(function(){
           '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
           + "</li>")
 
-        $('#edit_name').val('')
-        $('#edit_surname').val('')
-        $('#edit_address').val('')
-        $('#edit_email').val('')
-        $('#edit_number').val('')
+        $('.edit_contact_form input').val('')
 
         $('.edit_contact_form').hide()
 

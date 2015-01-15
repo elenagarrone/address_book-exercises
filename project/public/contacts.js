@@ -11,7 +11,7 @@ $(document).ready(function(){
 
     $.each(data, function(i, data){
       $('.contacts').append("<li data-id=" + data.id + "><h4>" + data.surname + " " + data.first_name + ":</h4>" +
-      "<p>" + data.address + "</p><p>" + data.phone_number + "</p><p>" + data.email + "</p>" +
+      "<p id='address'>" + data.address + "</p><p id='phone'>" + data.phone_number + "</p><p id='email'>" + data.email + "</p>" +
       '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
       '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
       + "</li>")
@@ -82,7 +82,8 @@ $(document).ready(function(){
       "phone_number": phone_number,
       "email": email
     }, function(data){
-      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+      $('.contacts').append("<li data-id=" + data.id + "><h4>" + data.surname + " " + data.first_name + ":</h4>" +
+      "<p id='address'>" + data.address + "</p><p id='phone'>" + data.phone_number + "</p><p id='email'>" + data.email + "</p>" +
       '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
       '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
       + "</li>")
@@ -105,9 +106,22 @@ $(document).ready(function(){
 
 
   $('.contacts').on('click', '.edit_contact', function(){
-    id = $(this).data('id')
+    var id = $(this).data('id')
     $('#edit_button').attr('data-id', id);
+    var name_surname = $('li[data-id="'+ id +'"] h4').text().slice(0,-1).split(' ')
+    var name = name_surname[0]
+    var surname = name_surname[1]
+    var address = $('li[data-id="'+ id +'"] p#address').text()
+    var email = $('li[data-id="'+ id +'"] p#email').text()
+    var phone = $('li[data-id="'+ id +'"] p#phone').text()
+
     $('.edit_contact_form').show()
+
+    $('#edit_name').val(name)
+    $('#edit_surname').val(surname)
+    $('#edit_address').val(address)
+    $('#edit_email').val(email)
+    $('#edit_number').val(phone)
   })
 
 
@@ -126,10 +140,11 @@ $(document).ready(function(){
       type: "PUT",
       success: function(data){
         $('li[data-id="'+ data.id +'"]').remove()
-        $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
-          '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
-          '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
-          + "</li>")
+        $('.contacts').append("<li data-id=" + data.id + "><h4>" + data.surname + " " + data.first_name + ":</h4>" +
+        "<p id='address'>" + data.address + "</p><p id='phone'>" + data.phone_number + "</p><p id='email'>" + data.email + "</p>" +
+        '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
+        '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
+        + "</li>")
 
         $('.edit_contact_form input').val('')
 

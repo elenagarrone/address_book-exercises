@@ -10,7 +10,8 @@ $(document).ready(function(){
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
     $.each(data, function(i, data){
-      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+      $('.contacts').append("<li data-id=" + data.id + "><h4>" + data.surname + " " + data.first_name + ":</h4>" +
+      "<p>" + data.address + "</p><p>" + data.phone_number + "</p><p>" + data.email + "</p>" +
       '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
       '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
       + "</li>")

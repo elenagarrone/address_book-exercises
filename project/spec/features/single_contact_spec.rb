@@ -1,7 +1,8 @@
 require 'spec_helper'
 require_relative 'helpers/add_contact.rb'
+require_relative 'helpers/edit_contact.rb'
 
-include AddContact;
+include AddContact; include EditContact;
 
 feature 'A contact' do
 
@@ -24,6 +25,7 @@ feature 'A contact' do
 
   scenario 'can be edited', js:true do
     visit '/'
+    sleep(1)
     expect(page).to have_content 'lala@lal.com'
     page.find('button[id=edit_TestE]').click
     sleep(1)

@@ -102,11 +102,18 @@ $(document).ready(function(){
       $.each(listitems, function(idx, itm) { mylist.append(itm); });
 
     })
+    .fail(function() {
+      alert("Name and Surname are required")
+    })
+    .done(function() {
+      alert("The contact has been added successfully")
+    })
   })
 
 
   $('.contacts').on('click', '.edit_contact', function(){
     var id = $(this).data('id')
+    $('html, body').animate({scrollTop:0}, 'fast')
     $('#edit_button').attr('data-id', id);
     var name_surname = $('li[data-id="'+ id +'"] h4').text().slice(0,-1).split(' ')
     var name = name_surname[0]

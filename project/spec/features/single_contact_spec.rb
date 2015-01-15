@@ -7,23 +7,14 @@ feature 'A contact' do
 
   scenario 'can be searched', js: true do
     visit '/'
-    sleep(2)
+    sleep(3)
     fill_in :search, with: 'ginola'
     click_on 'Search'
-    expect(page).to have_content 'Ginola David'
-    expect(page).not_to have_content 'Bannon Barry'
+    expect(page).to have_content 'David Ginola'
+    expect(page).not_to have_content 'Barry Bannon'
   end
 
-  scenario 'when clicked it shows all the informations', js: true do
-    visit '/'
-    click_on 'Bannon Barry'
-    sleep(1)
-    expect(page).to have_content('Banana Street')
-    expect(page).to have_content('07411857962')
-    expect(page).to have_content('Barry@banana.org')
-  end
-
-  xscenario 'can be added', js: true do
+  scenario 'can be added', js: true do
     visit '/'
     sleep(2)
     add_contact
@@ -34,8 +25,8 @@ feature 'A contact' do
   scenario 'can be removed', js: true do
     visit '/'
     sleep(1)
-    click_on 'Remove Bannon'
-    expect(page).not_to have_content('Bannon Barry')
+    click_on 'Remove TestE'
+    expect(page).not_to have_content('TestE')
   end
 
 end

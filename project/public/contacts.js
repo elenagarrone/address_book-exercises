@@ -9,8 +9,8 @@ $(document).ready(function(){
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
     $.each(data, function(i, data){
-      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " - " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
-      '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove</button>' + "</li>")
+      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+      '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove' + " " + data.first_name + '</button>' + "</li>")
     })
 
     $('li').sort(function(a,b){
@@ -72,7 +72,7 @@ $(document).ready(function(){
       "phone_number": phone_number,
       "email": email
     }, function(data){
-      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " - " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
       '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove</button>' + "</li>")
 
       $('li').sort(function(a,b){

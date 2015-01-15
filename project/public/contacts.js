@@ -108,42 +108,52 @@ $(document).ready(function(){
 
 
   $('.contacts').on('click', '.edit_contact', function(){
+    id = $(this).data('id')
+    $('#edit_button').attr('data-id', id);
     $('.edit_contact_form').show()
   })
 
 
   $('#edit_button').on('click', function(event){
+
     event.preventDefault()
-    var name = $('input[name=name]').val()
-    var surname = $('input[name=surname]').val()
-    var address = $('input[name=address]').val()
-    var email = $('input[name=email]').val()
-    var phone_number = $('input[name=phone_number]').val()
+    var name = $('#edit_name').val()
+    var surname = $('#edit_surname').val()
+    var address = $('#edit_address').val()
+    var email = $('#edit_email').val()
+    var phone_number = $('#edit_number').val()
     var contact_id = $(this).data('id')
     $.ajax({
       url: "http://fast-gorge.herokuapp.com/contacts/",
       data: { id: contact_id, first_name: name, surname: surname, address: address, email: email, phone_number: phone_number },
       type: "PUT",
       success: function(data){
-        console.log(data)
-        // $('li[data-id="'+ data.id +'"]').remove()
+        $('li[data-id="'+ data.id +'"]').remove()
+        $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+          '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
+          '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
+          + "</li>")
+
+        $('#edit_name').val('')
+        $('#edit_surname').val('')
+        $('#edit_address').val('')
+        $('#edit_email').val('')
+        $('#edit_number').val('')
+
+        $('.edit_contact_form').hide()
+
+        var mylist = $('ul');
+        var listitems = mylist.children('li').get();
+        listitems.sort(function(a, b) {
+          var compA = $(a).text().toUpperCase();
+          var compB = $(b).text().toUpperCase();
+          return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+        })
+        $.each(listitems, function(idx, itm) { mylist.append(itm); });
+
       }
     });
 
-
-
-    // }, function(data){
-    //   $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
-    //   '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
-    //   '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
-    //   + "</li>")
-    //
-    //   $('.add_contact_form').hide()
-    //
-    //   $('li').sort(function(a,b){
-    //     return $( a ).text() > $( b ).text();
-    //   }).appendTo('ul')
-    // })
   })
 
 

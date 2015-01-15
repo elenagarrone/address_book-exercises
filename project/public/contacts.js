@@ -16,9 +16,14 @@ $(document).ready(function(){
       + "</li>")
     })
 
-    $('li').sort(function(a,b){
-      return $( a ).text() > $( b ).text();
-    }).appendTo('ul')
+    var mylist = $('ul');
+    var listitems = mylist.children('li').get();
+    listitems.sort(function(a, b) {
+      var compA = $(a).text().toUpperCase();
+      var compB = $(b).text().toUpperCase();
+      return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+    })
+    $.each(listitems, function(idx, itm) { mylist.append(itm); });
 
   })
 
@@ -83,9 +88,15 @@ $(document).ready(function(){
 
       $('.add_contact_form').hide()
 
-      $('li').sort(function(a,b){
-        return $( a ).text() > $( b ).text();
-      }).appendTo('ul')
+      var mylist = $('ul');
+      var listitems = mylist.children('li').get();
+      listitems.sort(function(a, b) {
+        var compA = $(a).text().toUpperCase();
+        var compB = $(b).text().toUpperCase();
+        return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+      })
+      $.each(listitems, function(idx, itm) { mylist.append(itm); });
+
     })
   })
 
@@ -104,7 +115,7 @@ $(document).ready(function(){
     var phone_number = $('input[name=phone_number]').val()
     var contact_id = $(this).data('id')
     $.ajax({
-      url: "http://fast-gorge.herokuapp.com/contacts/",
+      url: "http://fast-gorge.herokuapp.com/contacts/" ,
       data: { id: contact_id, first_name: name, surname: surname, address: address, email: email, phone_number: phone_number },
       type: "PUT",
       success: function(data){

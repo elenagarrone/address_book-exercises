@@ -8,9 +8,9 @@ $(document).ready(function(){
 
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
-    $.each(data, function(i){
-      $('.contacts').append("<li>" + data[i].surname + " - " + data[i].first_name + ":  " + data[i].address + " - " + data[i].phone_number + " - " + data[i].email +
-      '<button class="rm_contact delete" data-id=' + data[i].id + ' type="submit">Remove</button>' + "</li>")
+    $.each(data, function(i, data){
+      $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " - " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+      '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove</button>' + "</li>")
     })
   })
 
@@ -21,7 +21,9 @@ $(document).ready(function(){
         url: "http://fast-gorge.herokuapp.com/contacts/",
         data: { id: contact_id },
         type: "DELETE",
-        success: function(data){ console.log(data)}
+        success: function(data){
+          $('li[data-id="'+ data.id +'"]').remove()
+        }
       });
     })
 
@@ -63,12 +65,6 @@ $(document).ready(function(){
         var email = $('input[name=email]').val()
         var phone_number = $('input[name=phone_number]').val()
 
-        // $.ajax({
-        //   url: 'http://fast-gorge.herokuapp.com/contacts',
-        //   type: 'POST',
-        //   data: { first_name: name, surname: surname, address: address, email: email, phone_number: phone_number }
-        // })
-
         $.post('http://fast-gorge.herokuapp.com/contacts', {
           "first_name": name,
           "surname": surname,
@@ -76,8 +72,7 @@ $(document).ready(function(){
           "phone_number": phone_number,
           "email": email
         }, function(data){
-          console.log(data)
-          $('.contacts').append("<li>" + data.surname + " - " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+          $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " - " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
           '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove</button>' + "</li>")
         })
       })

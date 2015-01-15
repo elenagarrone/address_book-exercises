@@ -22,11 +22,21 @@ feature 'A contact' do
     expect(page).to have_content 'TestE'
   end
 
+  scenario 'can be edited', js:true do
+    visit '/'
+    expect(page).to have_content 'lala@lal.com'
+    page.find('button[id=edit_TestE]').click
+    sleep(1)
+    edit_contact
+    sleep(1)
+    expect(page).to have_content 'test@test.com'
+  end
+
   scenario 'can be removed', js: true do
     visit '/'
     sleep(1)
-    click_on 'Remove TestE'
-    expect(page).not_to have_content('TestE')
+    page.find('button[id=rm_TestE]').click
+    expect(page).not_to have_content 'TestE'
   end
 
 end

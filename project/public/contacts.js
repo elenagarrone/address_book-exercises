@@ -4,13 +4,16 @@ function capitalizeFirstLetter(str){
 
 $(document).ready(function(){
   $('.add_contact_form').hide()
+  $('.edit_contact_form').hide()
   $('.all').hide()
 
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
     $.each(data, function(i, data){
       $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
-      '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove' + " " + data.first_name + '</button>' + "</li>")
+      '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
+      '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
+      + "</li>")
     })
 
     $('li').sort(function(a,b){
@@ -57,6 +60,7 @@ $(document).ready(function(){
     $('.add_contact_form').show()
   })
 
+
   $('#submit_button').on('click', function(event){
     event.preventDefault()
     var name = $('input[name=name]').val()
@@ -73,12 +77,57 @@ $(document).ready(function(){
       "email": email
     }, function(data){
       $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
-      '<button class="rm_contact delete" data-id=' + data.id + ' type="submit">Remove</button>' + "</li>")
+      '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
+      '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
+      + "</li>")
+
+      $('.add_contact_form').hide()
 
       $('li').sort(function(a,b){
         return $( a ).text() > $( b ).text();
       }).appendTo('ul')
     })
   })
+
+
+  $('.contacts').on('click', '.edit_contact', function(){
+    $('.edit_contact_form').show()
+  })
+
+
+  $('#edit_button').on('click', function(event){
+    event.preventDefault()
+    var name = $('input[name=name]').val()
+    var surname = $('input[name=surname]').val()
+    var address = $('input[name=address]').val()
+    var email = $('input[name=email]').val()
+    var phone_number = $('input[name=phone_number]').val()
+    var contact_id = $(this).data('id')
+    $.ajax({
+      url: "http://fast-gorge.herokuapp.com/contacts/",
+      data: { id: contact_id, first_name: name, surname: surname, address: address, email: email, phone_number: phone_number },
+      type: "PUT",
+      success: function(data){
+        console.log(data)
+        // $('li[data-id="'+ data.id +'"]').remove()
+      }
+    });
+
+
+
+    // }, function(data){
+    //   $('.contacts').append("<li data-id=" + data.id + ">" + data.surname + " " + data.first_name + ":  " + data.address + " - " + data.phone_number + " - " + data.email +
+    //   '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
+    //   '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
+    //   + "</li>")
+    //
+    //   $('.add_contact_form').hide()
+    //
+    //   $('li').sort(function(a,b){
+    //     return $( a ).text() > $( b ).text();
+    //   }).appendTo('ul')
+    // })
+  })
+
 
 })

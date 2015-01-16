@@ -38,3 +38,18 @@ function masterSum() {
     return a + b;
   });
 }
+
+// ======EXERCISE 5======
+// 5) Given the following object what will the output logs be
+// ===========================================================
+var Hero = {
+  hitPoints: 100,
+  getLife: function () {
+    return this.hitPoints;
+  }
+};
+// console.log(Hero.getLife());
+// // a) -> 100
+// var LinksLife = Hero.getLife;
+// console.log(LinksLife());
+// // b) -> undefined

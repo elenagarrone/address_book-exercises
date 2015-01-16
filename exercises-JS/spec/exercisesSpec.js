@@ -47,7 +47,23 @@ describe('Exercise4', function(){
     it('masterSum(1,2,3,4,5,6) returns 21', function(){
       expect(masterSum(1,2,3,4,5,6)).toEqual(21)
     })
-    
+
+  })
+
+})
+
+describe('Exercise5', function(){
+
+  describe('Given the object "Hero" the output logs is', function(){
+
+    it('100 when calling Hero.getLife()', function(){
+      expect(Hero.getLife()).toEqual(100)
+    })
+
+    it('undefined when calling LinksLife()', function(){
+      expect(Hero.getLife()).toEqual(100)
+    })
+
   })
 
 })

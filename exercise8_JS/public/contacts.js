@@ -21,17 +21,36 @@ function alphabeticalOrder(){
   $.each(listitems, function(idx, itm) { mylist.append(itm); });
 }
 
+function displaySearchedContact(){
+  var search_name = capitalizeFirstLetter($('#search').val())
+  $(".contacts li").each(function(){
+    var text = $(this).text()
+
+    if (text.indexOf(search_name) === -1) {
+      $(this).hide();
+    } else {
+      $(this).show();
+      $('.all').show()
+    }
+  })
+}
+
+function displayAllContacts(){
+  $(".all").on('click', function(){
+    $('li').show()
+  })
+}
+
+
 $(document).ready(function(){
   $('.add_contact_form').hide()
   $('.edit_contact_form').hide()
   $('.all').hide()
+  displayAllContacts();
 
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
-
     $.each(data, function(i, data){ listNewContact(data); })
-
     alphabeticalOrder();
-
   })
 
 
@@ -50,22 +69,7 @@ $(document).ready(function(){
 
 
   $('#search_button').on('click', function(){
-    var search_name = capitalizeFirstLetter($('#search').val())
-
-    $(".all").on('click', function(){
-      $('li').show()
-    })
-
-    $(".contacts li").each(function(){
-      var text = $(this).text()
-
-      if (text.indexOf(search_name) === -1) {
-        $(this).hide();
-      } else {
-        $(this).show();
-        $('.all').show()
-      }
-    })
+    displaySearchedContact();
   })
 
 

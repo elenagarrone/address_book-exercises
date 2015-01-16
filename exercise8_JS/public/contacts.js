@@ -18,19 +18,18 @@ function alphabeticalOrder(){
     var compB = $(b).text().toUpperCase();
     return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
   })
-  $.each(listitems, function(idx, itm) { mylist.append(itm); });
+  $.each(listitems, function(idx, itm) { mylist.append(itm); })
 }
 
 function displaySearchedContact(){
   var search_name = capitalizeFirstLetter($('#search').val())
   $(".contacts li").each(function(){
-    var text = $(this).text()
-
+    var text = $(this).text();
     if (text.indexOf(search_name) === -1) {
       $(this).hide();
     } else {
       $(this).show();
-      $('.all').show()
+      $('#all').show()
     }
   })
 }
@@ -150,11 +149,12 @@ function editContact(element){
 $(document).ready(function(){
   $('.add_contact_form').hide()
   $('.edit_contact_form').hide()
-  $('.all').hide()
+  $('#all').hide()
   displayContacts();
 
 
-  $(".all").on('click', function(){
+  $("#all").on('click', function(event){
+    event.preventDefault();
     $('li').show()
   })
 
@@ -178,7 +178,6 @@ $(document).ready(function(){
   $('.contacts').on('click', '.edit_contact', function(){
     preFillEditForm(this);
   })
-
 
   $('#edit_button').on('click', function(event){
     event.preventDefault()

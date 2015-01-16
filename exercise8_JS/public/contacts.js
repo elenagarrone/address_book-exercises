@@ -99,7 +99,7 @@ function deleteContact(element){
   });
 }
 
-function fillUpEditForm(element){
+function preFillEditForm(element){
   var id = $(element).data('id')
   $('html, body').animate({scrollTop:0}, 'fast')
   $('#edit_button').attr('data-id', id);
@@ -117,6 +117,33 @@ function fillUpEditForm(element){
   $('#edit_address').val(address)
   $('#edit_email').val(email)
   $('#edit_number').val(phone)
+}
+
+function editContact(element){
+  var name = $('#edit_name').val()
+  var surname = $('#edit_surname').val()
+  var address = $('#edit_address').val()
+  var email = $('#edit_email').val()
+  var phone_number = $('#edit_number').val()
+  var contact_id = $(element).data('id')
+  $.ajax({
+    url: "http://fast-gorge.herokuapp.com/contacts/",
+    data: { id: contact_id, first_name: name, surname: surname, address: address, email: email, phone_number: phone_number },
+    type: "PUT",
+    success: function(data){
+      $('li[data-id="'+ data.id +'"]').remove()
+      listNewContact(data);
+
+      alert('The contact has been edited successfully')
+
+      $('.edit_contact_form input').val('')
+
+      $('.edit_contact_form').hide()
+
+      alphabeticalOrder();
+
+    }
+  })
 }
 
 
@@ -144,44 +171,18 @@ $(document).ready(function(){
   })
 
   $('#submit_button').on('click', function(event){
-    event.preventDefault()
+    event.preventDefault();
     postNewContact();
   })
 
   $('.contacts').on('click', '.edit_contact', function(){
-    fillUpEditForm(this);
+    preFillEditForm(this);
   })
 
 
   $('#edit_button').on('click', function(event){
-
     event.preventDefault()
-    var name = $('#edit_name').val()
-    var surname = $('#edit_surname').val()
-    var address = $('#edit_address').val()
-    var email = $('#edit_email').val()
-    var phone_number = $('#edit_number').val()
-    var contact_id = $(this).data('id')
-    $.ajax({
-      url: "http://fast-gorge.herokuapp.com/contacts/",
-      data: { id: contact_id, first_name: name, surname: surname, address: address, email: email, phone_number: phone_number },
-      type: "PUT",
-      success: function(data){
-        $('li[data-id="'+ data.id +'"]').remove()
-        listNewContact(data);
-
-        alert('The contact has been edited successfully')
-
-        $('.edit_contact_form input').val('')
-
-        $('.edit_contact_form').hide()
-
-        alphabeticalOrder();
-
-      }
-    });
-
-  })
-
+    editContact(this)
+  });
 
 })

@@ -1,5 +1,5 @@
 var yourName = 'Elena Garrone'
-dateCompleted = 'DD/MM/YYYY';
+dateCompleted = '16/01/2015';
 
 // ======EXERCISE 1======
 function camelCase(string) {
@@ -78,7 +78,7 @@ if (!Function.prototype.bind) {
         : oThis,
         aArgs.concat(Array.prototype.slice.call(arguments)));
       };
-      
+
       if (this.prototype)
         fNOP.prototype = this.prototype;
         fBound.prototype = new fNOP();

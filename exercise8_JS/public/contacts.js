@@ -29,7 +29,7 @@ function displaySearchedContact(){
       $(this).hide();
     } else {
       $(this).show();
-      $('#all').show()
+      $('#show_all').show()
     }
   })
 }
@@ -149,21 +149,26 @@ function editContact(element){
 $(document).ready(function(){
   $('#add_contact_form').hide()
   $('#edit_contact_form').hide()
-  $('#all').hide()
+  $('#show_all').hide()
   displayContacts();
 
-
-  $("#all").on('click', function(event){
-    event.preventDefault();
-    $('li').show()
-  })
 
   $('.contacts').on('click', '.rm_contact', function(){
     deleteContact(this)
   })
 
-  $('#search_button').on('click', function(){
+  $('.contacts').on('click', '.edit_contact', function(){
+    preFillEditForm(this);
+  })
+
+  $('#search_button').on('click', function(event){
+    event.preventDefault();
     displaySearchedContact();
+  })
+
+  $("#show_all").on('click', function(event){
+    event.preventDefault();
+    $('li').show()
   })
 
   $('#add_contact').on('click', function(event){
@@ -174,10 +179,6 @@ $(document).ready(function(){
   $('#submit_button').on('click', function(event){
     event.preventDefault();
     postNewContact();
-  })
-
-  $('.contacts').on('click', '.edit_contact', function(){
-    preFillEditForm(this);
   })
 
   $('#edit_button').on('click', function(event){

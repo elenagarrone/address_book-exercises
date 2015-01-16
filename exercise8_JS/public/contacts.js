@@ -53,6 +53,19 @@ function postFailValidation(){
   }
 }
 
+function deleteContact(here){
+  var contact_id = $(here).data('id')
+  $.ajax({
+    url: "http://fast-gorge.herokuapp.com/contacts/",
+    data: { id: contact_id },
+    type: "DELETE",
+    success: function(data){
+      $('li[data-id="'+ data.id +'"]').remove()
+      alert('The contact has been deleted successfully')
+    }
+  });
+}
+
 
 $(document).ready(function(){
   $('.add_contact_form').hide()
@@ -67,16 +80,7 @@ $(document).ready(function(){
 
 
   $('.contacts').on('click', '.rm_contact', function(){
-    var contact_id = $(this).data('id')
-    $.ajax({
-      url: "http://fast-gorge.herokuapp.com/contacts/",
-      data: { id: contact_id },
-      type: "DELETE",
-      success: function(data){
-        $('li[data-id="'+ data.id +'"]').remove()
-        alert('The contact has been deleted successfully')
-      }
-    });
+    deleteContact('.rm_contact')
   })
 
 

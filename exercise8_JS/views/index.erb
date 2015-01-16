@@ -11,14 +11,14 @@
       <h1>Address book</h1>
     </header>
     <main>
-      <form class='search_form'>
+      <form id='search_form'>
         <input id='search' type='text' placeholder='Search name'>
         <a id='search_button' href='#'>Search</a>
       </form>
       <button id='all'>Show all</button>
 
-      <a class='add_contact' href='#'>Add contact</a>
-      <form class='add_contact_form'>
+      <button id='add_contact'>Add contact</button>
+      <form id='add_contact_form'>
         <input type='text' name='name' placeholder='Name (required)'>
         <input type='text' name='surname' placeholder='Surname (required)'>
         <input type='text' name='address' placeholder='Address'>
@@ -27,7 +27,7 @@
         <button id='submit_button' value='Submit'>Submit</button>
       </form>
 
-      <form class='edit_contact_form'>
+      <form id='edit_contact_form'>
         <input id='edit_name' type='text' name='name' placeholder='Name (required)'>
         <input id='edit_surname'type='text' name='surname' placeholder='Surname (required)'>
         <input id='edit_address'type='text' name='address' placeholder='Address'>

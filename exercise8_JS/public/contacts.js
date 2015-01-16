@@ -57,9 +57,9 @@ function postNewContact(){
   }, function(data){
     listNewContact(data);
 
-    $('.add_contact_form input').val('')
+    $('#add_contact_form input').val('')
 
-    $('.add_contact_form').hide()
+    $('#add_contact_form').hide()
 
     alphabeticalOrder();
 
@@ -109,7 +109,7 @@ function preFillEditForm(element){
   var email = $('li[data-id="'+ id +'"] p#email').text()
   var phone = $('li[data-id="'+ id +'"] p#phone').text()
 
-  $('.edit_contact_form').show()
+  $('#edit_contact_form').show()
 
   $('#edit_name').val(name)
   $('#edit_surname').val(surname)
@@ -135,9 +135,9 @@ function editContact(element){
 
       alert('The contact has been edited successfully')
 
-      $('.edit_contact_form input').val('')
+      $('#edit_contact_form input').val('')
 
-      $('.edit_contact_form').hide()
+      $('#edit_contact_form').hide()
 
       alphabeticalOrder();
 
@@ -147,8 +147,8 @@ function editContact(element){
 
 
 $(document).ready(function(){
-  $('.add_contact_form').hide()
-  $('.edit_contact_form').hide()
+  $('#add_contact_form').hide()
+  $('#edit_contact_form').hide()
   $('#all').hide()
   displayContacts();
 
@@ -166,8 +166,9 @@ $(document).ready(function(){
     displaySearchedContact();
   })
 
-  $('.add_contact').on('click', function(){
-    $('.add_contact_form').show()
+  $('#add_contact').on('click', function(event){
+    event.preventDefault();
+    $('#add_contact_form').show()
   })
 
   $('#submit_button').on('click', function(event){

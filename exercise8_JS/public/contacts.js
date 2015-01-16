@@ -41,6 +41,18 @@ function displayAllContacts(){
   })
 }
 
+function postFailValidation(){
+  name_validation = $('input[name=name]').val()
+  surname_validation = $('input[name=surname]').val()
+  if (name_validation === "") {
+    $('input[name=name]').css('border-color', 'red')
+    alert("A name is required")
+  } else {
+    $('input[name=surname]').css('border-color', 'red')
+    alert("A surname is required")
+  }
+}
+
 
 $(document).ready(function(){
   $('.add_contact_form').hide()
@@ -103,15 +115,7 @@ $(document).ready(function(){
 
     })
     .fail(function() {
-      name_validation = $('input[name=name]').val()
-      surname_validation = $('input[name=surname]').val()
-      if (name_validation === "") {
-        $('input[name=name]').css('border-color', 'red')
-        alert("A name is required")
-      } else {
-        $('input[name=surname]').css('border-color', 'red')
-        alert("A surname is required")
-      }
+      postFailValidation();
 
     })
     .done(function() {

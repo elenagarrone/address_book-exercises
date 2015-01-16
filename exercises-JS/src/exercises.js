@@ -31,3 +31,10 @@ function masterSum() {
 function sum(){
   return masterSum.apply(this, arguments);
 }
+
+// ======EXERCISE 4======
+function masterSum() {
+  return [].reduce.call(arguments, function(a, b) {
+    return a + b;
+  });
+}

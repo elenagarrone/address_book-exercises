@@ -39,3 +39,15 @@ describe('Exercise3', function(){
   })
 
 })
+
+describe('Exercise4', function(){
+
+  describe('The function "masterSum()" rewritten using the reduce method', function(){
+
+    it('masterSum(1,2,3,4,5,6) returns 21', function(){
+      expect(masterSum(1,2,3,4,5,6)).toEqual(21)
+    })
+    
+  })
+
+})

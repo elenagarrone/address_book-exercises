@@ -86,8 +86,8 @@ function postFailValidation(){
   }
 }
 
-function deleteContact(here){
-  var contact_id = $(here).data('id')
+function deleteContact(element){
+  var contact_id = $(element).data('id')
   $.ajax({
     url: "http://fast-gorge.herokuapp.com/contacts/",
     data: { id: contact_id },
@@ -97,6 +97,26 @@ function deleteContact(here){
       alert('The contact has been deleted successfully')
     }
   });
+}
+
+function fillUpEditForm(element){
+  var id = $(element).data('id')
+  $('html, body').animate({scrollTop:0}, 'fast')
+  $('#edit_button').attr('data-id', id);
+  var name_surname = $('li[data-id="'+ id +'"] h4').text().slice(0,-1).split(' ')
+  var name = name_surname[0]
+  var surname = name_surname[1]
+  var address = $('li[data-id="'+ id +'"] p#address').text()
+  var email = $('li[data-id="'+ id +'"] p#email').text()
+  var phone = $('li[data-id="'+ id +'"] p#phone').text()
+
+  $('.edit_contact_form').show()
+
+  $('#edit_name').val(name)
+  $('#edit_surname').val(surname)
+  $('#edit_address').val(address)
+  $('#edit_email').val(email)
+  $('#edit_number').val(phone)
 }
 
 
@@ -112,7 +132,7 @@ $(document).ready(function(){
   })
 
   $('.contacts').on('click', '.rm_contact', function(){
-    deleteContact('.rm_contact')
+    deleteContact(this)
   })
 
   $('#search_button').on('click', function(){
@@ -129,23 +149,7 @@ $(document).ready(function(){
   })
 
   $('.contacts').on('click', '.edit_contact', function(){
-    var id = $(this).data('id')
-    $('html, body').animate({scrollTop:0}, 'fast')
-    $('#edit_button').attr('data-id', id);
-    var name_surname = $('li[data-id="'+ id +'"] h4').text().slice(0,-1).split(' ')
-    var name = name_surname[0]
-    var surname = name_surname[1]
-    var address = $('li[data-id="'+ id +'"] p#address').text()
-    var email = $('li[data-id="'+ id +'"] p#email').text()
-    var phone = $('li[data-id="'+ id +'"] p#phone').text()
-
-    $('.edit_contact_form').show()
-
-    $('#edit_name').val(name)
-    $('#edit_surname').val(surname)
-    $('#edit_address').val(address)
-    $('#edit_email').val(email)
-    $('#edit_number').val(phone)
+    fillUpEditForm(this);
   })
 
 

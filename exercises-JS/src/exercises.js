@@ -10,6 +10,7 @@ function camelCase(string) {
     });
 }
 
+
 // ======EXERCISE 2======
 String.prototype.camelCase = function() {
   var string = this.trim();
@@ -18,6 +19,7 @@ String.prototype.camelCase = function() {
     return index === 0 ? match.toLowerCase() : match.toUpperCase();
   });
 }
+
 
 // ======EXERCISE 3======
 function masterSum() {
@@ -32,6 +34,7 @@ function sum(){
   return masterSum.apply(this, arguments);
 }
 
+
 // ======EXERCISE 4======
 function masterSum() {
   return [].reduce.call(arguments, function(a, b) {
@@ -39,9 +42,8 @@ function masterSum() {
   });
 }
 
+
 // ======EXERCISE 5======
-// 5) Given the following object what will the output logs be
-// ===========================================================
 var Hero = {
   hitPoints: 100,
   getLife: function () {
@@ -53,3 +55,8 @@ var Hero = {
 // var LinksLife = Hero.getLife;
 // console.log(LinksLife());
 // // b) -> undefined
+
+
+// ======EXERCISE 6======
+var getLife = Hero.getLife;
+var LinksLife = getLife.bind(Hero);

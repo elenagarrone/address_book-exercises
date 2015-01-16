@@ -54,14 +54,22 @@ describe('Exercise4', function(){
 
 describe('Exercise5', function(){
 
-  describe('Given the object "Hero" the output logs is', function(){
+  describe('Given the object "Hero" the output is', function(){
 
-    it('100 when calling Hero.getLife()', function(){
+    it('"100" when calling Hero.getLife()', function(){
       expect(Hero.getLife()).toEqual(100)
     })
 
-    it('undefined when calling LinksLife()', function(){
-      expect(Hero.getLife()).toEqual(100)
+  })
+
+})
+
+describe('Exercise6', function(){
+
+  describe('Given the object "Hero" and using the method bind() the output is', function(){
+
+    it('"100" when calling the LinksLife() ', function(){
+      expect(LinksLife()).toEqual(100)
     })
 
   })

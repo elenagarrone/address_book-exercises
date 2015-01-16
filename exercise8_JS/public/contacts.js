@@ -10,6 +10,17 @@ function listNewContact(data){
   + "</li>")
 }
 
+function alphabeticalOrder(){
+  var mylist = $('ul');
+  var listitems = mylist.children('li').get();
+  listitems.sort(function(a, b) {
+    var compA = $(a).text().toUpperCase();
+    var compB = $(b).text().toUpperCase();
+    return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+  })
+  $.each(listitems, function(idx, itm) { mylist.append(itm); });
+}
+
 $(document).ready(function(){
   $('.add_contact_form').hide()
   $('.edit_contact_form').hide()
@@ -17,18 +28,9 @@ $(document).ready(function(){
 
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
 
-    $.each(data, function(i, data){
-      listNewContact(data);
-    })
+    $.each(data, function(i, data){ listNewContact(data); })
 
-    var mylist = $('ul');
-    var listitems = mylist.children('li').get();
-    listitems.sort(function(a, b) {
-      var compA = $(a).text().toUpperCase();
-      var compB = $(b).text().toUpperCase();
-      return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
-    })
-    $.each(listitems, function(idx, itm) { mylist.append(itm); });
+    alphabeticalOrder();
 
   })
 
@@ -93,14 +95,7 @@ $(document).ready(function(){
 
       $('.add_contact_form').hide()
 
-      var mylist = $('ul');
-      var listitems = mylist.children('li').get();
-      listitems.sort(function(a, b) {
-        var compA = $(a).text().toUpperCase();
-        var compB = $(b).text().toUpperCase();
-        return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
-      })
-      $.each(listitems, function(idx, itm) { mylist.append(itm); });
+      alphabeticalOrder();
 
     })
     .fail(function() {
@@ -165,14 +160,7 @@ $(document).ready(function(){
 
         $('.edit_contact_form').hide()
 
-        var mylist = $('ul');
-        var listitems = mylist.children('li').get();
-        listitems.sort(function(a, b) {
-          var compA = $(a).text().toUpperCase();
-          var compB = $(b).text().toUpperCase();
-          return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
-        })
-        $.each(listitems, function(idx, itm) { mylist.append(itm); });
+        alphabeticalOrder();
 
       }
     });

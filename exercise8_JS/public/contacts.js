@@ -35,9 +35,42 @@ function displaySearchedContact(){
   })
 }
 
-function displayAllContacts(){
-  $(".all").on('click', function(){
-    $('li').show()
+function displayContacts(){
+  $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
+    $.each(data, function(i, data){ listNewContact(data); })
+    alphabeticalOrder();
+  })
+}
+
+function postNewContact(){
+  var name = $('input[name=name]').val()
+  var surname = $('input[name=surname]').val()
+  var address = $('input[name=address]').val()
+  var email = $('input[name=email]').val()
+  var phone_number = $('input[name=phone_number]').val()
+
+  $.post('http://fast-gorge.herokuapp.com/contacts', {
+    "first_name": name,
+    "surname": surname,
+    "address": address,
+    "phone_number": phone_number,
+    "email": email
+  }, function(data){
+    listNewContact(data);
+
+    $('.add_contact_form input').val('')
+
+    $('.add_contact_form').hide()
+
+    alphabeticalOrder();
+
+  })
+  .fail(function() {
+    postFailValidation();
+
+  })
+  .done(function() {
+    alert("The contact has been added successfully")
   })
 }
 
@@ -71,62 +104,29 @@ $(document).ready(function(){
   $('.add_contact_form').hide()
   $('.edit_contact_form').hide()
   $('.all').hide()
-  displayAllContacts();
+  displayContacts();
 
-  $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
-    $.each(data, function(i, data){ listNewContact(data); })
-    alphabeticalOrder();
+
+  $(".all").on('click', function(){
+    $('li').show()
   })
-
 
   $('.contacts').on('click', '.rm_contact', function(){
     deleteContact('.rm_contact')
   })
 
-
   $('#search_button').on('click', function(){
     displaySearchedContact();
   })
-
 
   $('.add_contact').on('click', function(){
     $('.add_contact_form').show()
   })
 
-
   $('#submit_button').on('click', function(event){
     event.preventDefault()
-    var name = $('input[name=name]').val()
-    var surname = $('input[name=surname]').val()
-    var address = $('input[name=address]').val()
-    var email = $('input[name=email]').val()
-    var phone_number = $('input[name=phone_number]').val()
-
-    $.post('http://fast-gorge.herokuapp.com/contacts', {
-      "first_name": name,
-      "surname": surname,
-      "address": address,
-      "phone_number": phone_number,
-      "email": email
-    }, function(data){
-      listNewContact(data);
-
-      $('.add_contact_form input').val('')
-
-      $('.add_contact_form').hide()
-
-      alphabeticalOrder();
-
-    })
-    .fail(function() {
-      postFailValidation();
-
-    })
-    .done(function() {
-      alert("The contact has been added successfully")
-    })
+    postNewContact();
   })
-
 
   $('.contacts').on('click', '.edit_contact', function(){
     var id = $(this).data('id')

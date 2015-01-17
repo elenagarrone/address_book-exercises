@@ -38,7 +38,7 @@ function displayContacts(){
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
     $.each(data, function(i, data){ listNewContact(data); });
     alphabeticalOrder();
-  })
+  });
 }
 
 function postNewContact(){
@@ -60,14 +60,14 @@ function postNewContact(){
     alphabeticalOrder();
   })
   .fail(function() {
-    validations();
+    _validations();
   })
   .done(function() {
     alert("The contact has been added successfully");
   });
 }
 
-function validations(){
+function _validations(){
   var name_validation = $('input[name=name]').val();
   var surname_validation = $('input[name=surname]').val();
   if (name_validation === "") {
@@ -90,6 +90,15 @@ function deleteContact(element){
   });
 }
 
+function _fllingForm(name, surname, address, email, phone){
+  $('#edit_contact_form').show();
+  $('#edit_name').val(name);
+  $('#edit_surname').val(surname);
+  $('#edit_address').val(address);
+  $('#edit_email').val(email);
+  $('#edit_number').val(phone);
+}
+
 function preFillEditForm(element){
   var id = $(element).data('id');
   $('#edit_button').attr('data-id', id);
@@ -100,11 +109,7 @@ function preFillEditForm(element){
   var email = $('li[data-id="'+ id +'"] p#email').text();
   var phone = $('li[data-id="'+ id +'"] p#phone').text();
   $('#edit_contact_form').show();
-  $('#edit_name').val(name);
-  $('#edit_surname').val(surname);
-  $('#edit_address').val(address);
-  $('#edit_email').val(email);
-  $('#edit_number').val(phone);
+  _fllingForm(name, surname, address, email, phone)
 }
 
 function editContact(element){

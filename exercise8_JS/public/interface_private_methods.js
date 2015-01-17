@@ -10,8 +10,10 @@ Interface.prototype._listNewContact = function(data){
   "<p id='address'>" + data.address + "</p>" + 
   "<p id='phone'>" + data.phone_number + "</p>" + 
   "<p id='email'>" + data.email + "</p>" +
+  '<article id="buttons_contact">' +
   '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
-  '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'+ 
+  '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>' + 
+  '</article>' +
   "</li>");
 };
 

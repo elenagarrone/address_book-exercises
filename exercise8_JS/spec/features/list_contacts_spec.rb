@@ -16,9 +16,9 @@ feature 'The list of all the contacts' do
   scenario 'with the informations', js: true do
     visit '/'
     sleep(1)
-    expect(page).to have_content('Banana Street')
-    expect(page).to have_content('02389024')
-    expect(page).to have_content('Barry@banana.org')
+    expect(page).to have_content('Asia Street')
+    expect(page).to have_content('09239328')
+    expect(page).to have_content('Asia@asua.com')
   end
 
   scenario 'after the search, you can see all the contacts by pressing a button', js: true do
@@ -28,7 +28,7 @@ feature 'The list of all the contacts' do
     click_on 'Search'
     click_on 'Show all'
     expect(page).to have_content 'David Ginola'
-    expect(page).to have_content 'Barry Bannon'
+    expect(page).to have_content 'Asia Assia'
   end
 
 end

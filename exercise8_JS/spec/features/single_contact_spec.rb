@@ -12,7 +12,7 @@ feature 'A contact' do
     fill_in :search, with: 'ginola'
     click_on 'Search'
     expect(page).to have_content 'David Ginola'
-    expect(page).not_to have_content 'Barry Bannon'
+    expect(page).not_to have_content 'Asia Assia'
   end
 
   scenario 'can be added', js: true do

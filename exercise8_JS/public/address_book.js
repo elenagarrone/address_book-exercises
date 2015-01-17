@@ -11,7 +11,7 @@ $(document).ready(function(){
   $('#search_button').on('click', function(event){
     event.preventDefault();
     interface.displaySearchedContact();
-    $('#search').val('')
+    $('#search').val('');
   });
   
   $('#add_contact').on('click', function(event){

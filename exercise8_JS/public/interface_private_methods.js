@@ -2,7 +2,7 @@ Interface.prototype._capitalizeFirstLetter = function(str){
   return str.replace(/\w\S*/g, function(txt){
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
-}
+};
 
 Interface.prototype._listNewContact = function(data){
   $('.contacts').append("<li data-id=" + data.id + ">" + 

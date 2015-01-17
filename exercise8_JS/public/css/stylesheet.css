@@ -1,0 +1,48 @@
+header {
+  margin: 0px 0px 20px 0px;
+  background-color: rgba(111,111,111,0.1);
+  height: 50px;
+  border-bottom: 1px solid rgb(204, 204, 204);
+  padding: 0px 15px 0px 15px;
+}
+
+header h1 {
+  font-size: 40px;
+  font-family: 'Hammersmith One', sans-serif;
+  line-height: 55px;
+}
+
+section#search_bar { 
+  text-align: center; 
+  margin: 20px 0px 15px 0px;
+}
+
+form#search_form {
+  display: inline-block;
+}
+
+input {
+  height: 20px;
+  width: 200px;
+  padding: 2px 4px 2px 4px;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 5px 0px 5px 0px; 
+}
+
+button {
+  margin: 0px 3px 0px 3px;
+  padding: 4.2px 10px 6.3px 10px;
+  font-size: 13px;
+  background-color: rgb(240, 240, 240);
+  border-style: none;
+  border-radius: 2px;
+  border: 1px solid rgb(204, 204, 204);
+}
+
+section#forms { text-align: center; }
+
+section#forms article {
+  display: inline-block;
+  text-align: left;
+}

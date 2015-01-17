@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Address book</title>
+    <link rel='stylesheet' type='text/css' href='/css/reset.css'>
+    <link rel='stylesheet' type='text/css' href='/css/stylesheet.css'>
+    <link href='http://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type='text/javascript' src="/address_book.js"></script>
     <script type='text/javascript' src="/interface.js"></script>
@@ -13,32 +16,39 @@
       <h1>Address book</h1>
     </header>
     <main>
-      <form id='search_form'>
-        <input id='search' type='text' placeholder='Search name'>
-        <button id='search_button'>Search</button>
-      </form>
-      <button class='hidden' id='show_all'>Show all</button>
+      <section id='search_bar'>
+        <form id='search_form'>
+          <input id='search' type='text' placeholder='Search name'>
+          <button id='search_button'>Search</button>
+        </form>
 
-      <button id='add_contact'>Add contact</button>
-      <form class='hidden' id='add_contact_form'>
-        <input type='text' name='name' placeholder='Name (required)'>
-        <input type='text' name='surname' placeholder='Surname (required)'>
-        <input type='text' name='address' placeholder='Address'>
-        <input type='email' name='email' placeholder='Email (example@example.com)'>
-        <input type='text' name='phone_number' placeholder='Phone number'>
-        <button id='submit_button' type='submit'>Submit</button>
-        <button id='close_add'>Close</button>
-      </form>
+        <button id='add_contact'>Add contact</button>
+        <button class='hidden' id='show_all'>Show all</button>
+      </section>
 
-      <form class='hidden' id='edit_contact_form'>
-        <input id='edit_name' type='text' name='name' placeholder='Name (required)'>
-        <input id='edit_surname'type='text' name='surname' placeholder='Surname (required)'>
-        <input id='edit_address'type='text' name='address' placeholder='Address'>
-        <input id='edit_email'type='email' name='email' placeholder='Email (example@example.com)'>
-        <input id='edit_number'type='text' name='phone_number' placeholder='Phone number'>
-        <button id='edit_button' type='submit'>Edit</button>
-        <button id='close_edit'>Close</button>
-      </form>
+      <section id='forms'>
+        <article>
+          <form class='hidden' id='add_contact_form'>
+            <input type='text' name='name' placeholder='Name (required)'>
+            <input type='text' name='surname' placeholder='Surname (required)'>
+            <input type='text' name='address' placeholder='Address'>
+            <input type='email' name='email' placeholder='Email (example@example.com)'>
+            <input type='text' name='phone_number' placeholder='Phone number'>
+            <button id='submit_button' type='submit'>Submit</button>
+            <button id='close_add'>Close</button>
+          </form>
+
+          <form class='hidden' id='edit_contact_form'>
+            <input id='edit_name' type='text' name='name' placeholder='Name (required)'>
+            <input id='edit_surname'type='text' name='surname' placeholder='Surname (required)'>
+            <input id='edit_address'type='text' name='address' placeholder='Address'>
+            <input id='edit_email'type='email' name='email' placeholder='Email (example@example.com)'>
+            <input id='edit_number'type='text' name='phone_number' placeholder='Phone number'>
+            <button id='edit_button' type='submit'>Edit</button>
+            <button id='close_edit'>Close</button>
+          </form>
+        </article>
+      </section>
 
       <ul class='contacts'></ul>
     </main>

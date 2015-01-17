@@ -1,11 +1,12 @@
 $(document).ready(function(){
-  interface = new Interface();
+  var interface = new Interface();
   $('.hidden').hide();
   interface.displayContacts();
 
   $("#show_all").on('click', function(event){
     event.preventDefault();
     $('li').show();
+    $(this).hide();
   });
 
   $('#search_button').on('click', function(event){

@@ -1,4 +1,4 @@
-var yourName = 'Elena Garrone'
+var yourName = 'Elena Garrone';
 dateCompleted = '16/01/2015';
 
 // ======EXERCISE 1======
@@ -18,7 +18,7 @@ String.prototype.camelCase = function() {
     if (+match === 0) return "";
     return index === 0 ? match.toLowerCase() : match.toUpperCase();
   });
-}
+};
 
 
 // ======EXERCISE 3======

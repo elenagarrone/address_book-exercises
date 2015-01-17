@@ -1,5 +1,5 @@
-Address book + JS exercise
-==========================
+Address book + JS exercises
+===========================
 ###exercises1-7_JS:
 A few exercises in JavaScript, tested with Jasmine.
 

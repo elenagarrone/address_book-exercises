@@ -6,8 +6,8 @@ function listNewContact(data){
   $('.contacts').append("<li data-id=" + data.id + "><h4>" + data.surname + " " + data.first_name + ":</h4>" +
   "<p id='address'>" + data.address + "</p><p id='phone'>" + data.phone_number + "</p><p id='email'>" + data.email + "</p>" +
   '<button class="rm_contact" id=rm_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Remove</button>' +
-  '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'
-  + "</li>")
+  '<button class="edit_contact" id=edit_'+ data.first_name + ' data-id=' + data.id + ' type="submit">Edit</button>'+ 
+  "</li>");
 }
 
 function alphabeticalOrder(){
@@ -17,8 +17,8 @@ function alphabeticalOrder(){
     var compA = $(a).text().toUpperCase();
     var compB = $(b).text().toUpperCase();
     return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
-  })
-  $.each(listitems, function(idx, itm) { mylist.append(itm); })
+  });
+  $.each(listitems, function(idx, itm) { mylist.append(itm); });
 }
 
 function displaySearchedContact(){
@@ -31,12 +31,12 @@ function displaySearchedContact(){
       $(this).show();
       $('#show_all').show();
     }
-  })
+  });
 }
 
 function displayContacts(){
   $.get('http://fast-gorge.herokuapp.com/contacts', function(data){
-    $.each(data, function(i, data){ listNewContact(data); })
+    $.each(data, function(i, data){ listNewContact(data); });
     alphabeticalOrder();
   })
 }
@@ -63,16 +63,16 @@ function postNewContact(){
     validations();
   })
   .done(function() {
-    alert("The contact has been added successfully")
-  })
+    alert("The contact has been added successfully");
+  });
 }
 
 function validations(){
-  name_validation = $('input[name=name]').val();
-  surname_validation = $('input[name=surname]').val();
+  var name_validation = $('input[name=name]').val();
+  var surname_validation = $('input[name=surname]').val();
   if (name_validation === "") {
     alert("A name is required");
-  } else {
+  } else if (surname_validation === "") {
     alert("A surname is required");
   }
 }
@@ -126,46 +126,46 @@ function editContact(element){
       $('#edit_contact_form').hide();
       alphabeticalOrder();
     }
-  })
+  });
 }
 
 
 $(document).ready(function(){
-  $('.hidden').hide()
+  $('.hidden').hide();
   displayContacts();
 
   $('.contacts').on('click', '.rm_contact', function(){
-    deleteContact(this)
-  })
+    deleteContact(this);
+  });
 
   $('.contacts').on('click', '.edit_contact', function(){
     $('html, body').animate({scrollTop:0}, 'fast');
     preFillEditForm(this);
-  })
+  });
 
   $('#search_button').on('click', function(event){
     event.preventDefault();
     displaySearchedContact();
-  })
+  });
 
   $("#show_all").on('click', function(event){
     event.preventDefault();
-    $('li').show()
-  })
+    $('li').show();
+  });
 
   $('#add_contact').on('click', function(event){
     event.preventDefault();
-    $('#add_contact_form').show()
-  })
+    $('#add_contact_form').show();
+  });
 
   $('#submit_button').on('click', function(event){
     event.preventDefault();
     postNewContact();
-  })
-
-  $('#edit_button').on('click', function(event){
-    event.preventDefault()
-    editContact(this)
   });
 
-})
+  $('#edit_button').on('click', function(event){
+    event.preventDefault();
+    editContact(this);
+  });
+
+});

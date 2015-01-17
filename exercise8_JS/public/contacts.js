@@ -60,21 +60,30 @@ function postNewContact(){
     alphabeticalOrder();
   })
   .fail(function() {
-    _validations();
+    _validationsOn('input[name=name]', 'input[name=surname]');
   })
   .done(function() {
-    alert("The contact has been added successfully");
+    _flashMessage("The contact has been added successfully!");
   });
 }
 
-function _validations(){
-  var name_validation = $('input[name=name]').val();
-  var surname_validation = $('input[name=surname]').val();
-  if (name_validation === "") {
-    alert("A name is required");
+function _validationsOn(nameElement, surnameElement){
+  var name_validation = $(nameElement).val();
+  var surname_validation = $(surnameElement).val();
+  if (name_validation === "" && surname_validation === "" ) {
+    _flashMessage("Name and surname are required.");
   } else if (surname_validation === "") {
-    alert("A surname is required");
+    _flashMessage("A surname is required.");
+  } else if (name_validation === "") {
+    _flashMessage("A name is required.");
   }
+}
+
+function _flashMessage(string){
+  $('#add_contact').after('<h5>' + string + '</h5>');
+  setTimeout(function(){
+    $('h5').remove();
+  }, 1500);
 }
 
 function deleteContact(element){
@@ -85,7 +94,7 @@ function deleteContact(element){
     type: "DELETE",
     success: function(data){
       $('li[data-id="'+ data.id +'"]').remove();
-      alert('The contact has been deleted successfully');
+      _flashMessage('The contact has been deleted successfully!');
     }
   });
 }
@@ -109,7 +118,7 @@ function preFillEditForm(element){
   var email = $('li[data-id="'+ id +'"] p#email').text();
   var phone = $('li[data-id="'+ id +'"] p#phone').text();
   $('#edit_contact_form').show();
-  _fllingForm(name, surname, address, email, phone)
+  _fllingForm(name, surname, address, email, phone);
 }
 
 function editContact(element){
@@ -126,10 +135,13 @@ function editContact(element){
     success: function(data){
       $('li[data-id="'+ data.id +'"]').remove();
       listNewContact(data);
-      alert('The contact has been edited successfully');
+      _flashMessage('The contact has been edited successfully!');
       $('#edit_contact_form input').val('');
       $('#edit_contact_form').hide();
       alphabeticalOrder();
+    },
+    error: function(){
+      _validationsOn('#edit_name', '#edit_surname');
     }
   });
 }
@@ -140,6 +152,7 @@ $(document).ready(function(){
   displayContacts();
 
   $('.contacts').on('click', '.rm_contact', function(){
+    $('html, body').animate({scrollTop:0}, 'fast');
     deleteContact(this);
   });
 

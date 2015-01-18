@@ -18,7 +18,9 @@ $ rspec
 ```
 
 ###exercise8_JS:
-This is a simple single page application built using Sinatra.
+This is a simple single page address book application built using Sinatra.
+
+<img src='address_book.png'>
 
 ######Specification:
 Contacts:

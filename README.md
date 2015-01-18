@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/elenagarrone/address_book-exercises/badges/gpa.svg)](https://codeclimate.com/github/elenagarrone/address_book-exercises)
+
 Address book + JS exercises
 ===========================
 ###exercises1-7_JS:

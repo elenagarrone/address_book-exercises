@@ -50,11 +50,16 @@ var Hero = {
     return this.hitPoints;
   }
 };
-// console.log(Hero.getLife());
-// // a) -> 100
-// var LinksLife = Hero.getLife;
-// console.log(LinksLife());
-// // b) -> undefined
+
+/**
+====This is the answer to exercise 5:====
+console.log(Hero.getLife());
+a) -> 100
+var LinksLife = Hero.getLife;
+console.log(LinksLife());
+b) -> undefined
+*/
+
 
 
 // ======EXERCISE 6======
@@ -79,10 +84,9 @@ if (!Function.prototype.bind) {
         aArgs.concat(Array.prototype.slice.call(arguments)));
       };
 
-      if (this.prototype)
-        fNOP.prototype = this.prototype;
-        fBound.prototype = new fNOP();
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
 
-        return fBound;
-      };
-    }
+    return fBound;
+  };
+}

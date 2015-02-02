@@ -2,7 +2,7 @@
 
 Address book + JS exercises
 ===========================
-This test was definitely a challenge for me, I'm not gonna lie! It's probably far from perfect but I feel like I've learned a massive amount of new things while doing it and I have really enjoyed it.
+I'm currently working on version 2.0 of exercise 8 using Angular.js. 
 
 ###exercises1-7_JS:
 A few exercises in JavaScript, tested with Jasmine.

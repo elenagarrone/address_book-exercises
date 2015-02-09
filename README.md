@@ -2,7 +2,7 @@
 
 Address book + JS exercises
 ===========================
-I'm currently working on version 2.0 of exercise 8 using Angular.js. 
+I'm currently working on <a href='https://github.com/elenagarrone/address_book-AngularJS'>version 2.0</a> of exercise 8 using Angular.js.
 
 ###exercises1-7_JS:
 A few exercises in JavaScript, tested with Jasmine.
